@@ -1,0 +1,72 @@
+-- Definición de la tabla Pais
+CREATE TABLE Pais (
+    idPais SERIAL PRIMARY KEY,
+    nombre VARCHAR(45)
+);
+
+-- Definición de la tabla Persona
+CREATE TABLE Persona (
+    idPersona SERIAL PRIMARY KEY,
+    cedula INTEGER,
+    nombre VARCHAR(100),
+    apellido VARCHAR(100),
+    fechaNacimiento DATE,
+    idPaisNacionalidad INTEGER,
+    FOREIGN KEY (idPaisNacionalidad) REFERENCES Pais(idPais)
+);
+
+-- Definición de la tabla Genero
+CREATE TABLE Genero (
+    idGenero SERIAL PRIMARY KEY,
+    nombre VARCHAR(45),
+    descripcion VARCHAR(200)
+);
+
+-- Definición de la tabla Editorial
+CREATE TABLE Editorial (
+    idEditorial SERIAL PRIMARY KEY,
+    nombre VARCHAR(100),
+    descripcion VARCHAR(200)
+);
+
+-- Definición de la tabla Usuario
+CREATE TABLE Usuario (
+    idUsuario SERIAL PRIMARY KEY,
+    numeroPrestamos INTEGER,
+    password VARCHAR(256),
+    idPersona INTEGER UNIQUE,
+    FOREIGN KEY (idPersona) REFERENCES Persona(idPersona)
+);
+
+-- Definición de la tabla Autor
+CREATE TABLE Autor (
+    idAutor SERIAL PRIMARY KEY,
+    idPersona INTEGER UNIQUE,
+    idGeneroPrincipal INTEGER,
+    FOREIGN KEY (idPersona) REFERENCES Persona(idPersona),
+    FOREIGN KEY (idGeneroPrincipal) REFERENCES Genero(idGenero)
+);
+
+-- Definición de la tabla Libro
+CREATE TABLE Libro (
+    idLibro SERIAL PRIMARY KEY,
+    titulo VARCHAR(100),
+    sinopsis VARCHAR(200),
+    idGenero INTEGER,
+    idAutor INTEGER,
+    idEditorial INTEGER,
+    FOREIGN KEY (idGenero) REFERENCES Genero(idGenero),
+    FOREIGN KEY (idAutor) REFERENCES Autor(idAutor),
+    FOREIGN KEY (idEditorial) REFERENCES Editorial(idEditorial)
+);
+
+-- Definición de la tabla Prestamos
+CREATE TABLE Prestamos (
+    idPrestamo SERIAL PRIMARY KEY,
+    vigente BOOLEAN,
+    fechaPrestamo DATE,
+    idUsuario INTEGER,
+    idLibro INTEGER,
+    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (idLibro) REFERENCES Libro(idLibro)
+);

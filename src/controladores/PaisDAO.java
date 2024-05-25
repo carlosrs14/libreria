@@ -24,7 +24,7 @@ public class PaisDAO {
     public ArrayList<Pais> getPaises(){
         ArrayList<Pais> aux = new ArrayList<>();
         if (connection != null) {
-            String consultaSQL = "SELECT * FROM pais";
+            String consultaSQL = "SELECT * FROM paises";
             try {
                 PreparedStatement statement = connection.prepareStatement(consultaSQL);
                 ResultSet resultado = statement.executeQuery();
@@ -42,13 +42,14 @@ public class PaisDAO {
         return aux;
     }
     public boolean existe(String pais){
-        String consultaSQL = "SELECT * FROM pais WHERE nombre = ?";
+        String consultaSQL = "SELECT * FROM paises WHERE nombre = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(consultaSQL);
-            statement.setString(1, "'" + pais + "'");
+            statement.setString(1, pais);
             ResultSet restultado = statement.executeQuery();
             while (restultado.next()) {
-                if (restultado.getString("nombre").equals(pais)) {
+                System.out.println(restultado.getString("nombre"));
+                if (restultado.getString("nombre").compareToIgnoreCase(pais) == 0) {
                     return true;
                 }
             }

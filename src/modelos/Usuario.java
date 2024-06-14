@@ -1,8 +1,8 @@
 package modelos;
 public class Usuario {
-    public Persona personaUsurio;
-    public int nPrestamos;
-    public String password;
+    private Persona personaUsurio;
+    private int nPrestamos;
+    private String password;
     public Usuario(Persona personaUsurio, int nPrestamos, String password) {
         this.personaUsurio = personaUsurio;
         this.nPrestamos = nPrestamos;

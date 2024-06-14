@@ -1,8 +1,8 @@
 package modelos;
 
 public class Pais {
-    public int idPais;
-    public String nombre;
+    private int idPais;
+    private String nombre;
     public Pais(int idPais, String nombre) {
         this.idPais = idPais;
         this.nombre = nombre;

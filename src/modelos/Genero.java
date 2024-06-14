@@ -1,9 +1,9 @@
 package modelos;
 
 public class Genero {
-    public int idGenero;
-    public String nombre;
-    public String descripcion;
+    private int idGenero;
+    private String nombre;
+    private String descripcion;
     public Genero(int idGenero, String nombre, String descripcion) {
         this.idGenero = idGenero;
         this.nombre = nombre;

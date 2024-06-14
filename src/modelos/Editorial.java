@@ -1,9 +1,9 @@
 package modelos;
 
 public class Editorial {
-    public int idEditorial;
-    public String nombre;
-    public String descripcion;
+    private int idEditorial;
+    private String nombre;
+    private String descripcion;
     public Editorial(int idEditorial, String nombre, String descripcion) {
         this.idEditorial = idEditorial;
         this.nombre = nombre;

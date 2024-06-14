@@ -2,30 +2,21 @@ package controladores;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import datos.Credenciales;
 import modelos.Pais;
 import modelos.Persona;
 import modelos.Usuario;
 
 public class UsuarioDAO {
-    Credenciales cred;
     Connection connection;
-    public UsuarioDAO(){
-        this.cred = new Credenciales();
-        try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(cred.url, cred.user, cred.password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public UsuarioDAO(Connection connection) {
+        this.connection = connection;
     }
-    public ArrayList<Usuario> getUsuarios(){
-        ArrayList<Usuario> aux = new ArrayList<>();
+    public ArrayList<Usuario> getUsuarios() {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
         if(connection != null){
             String consultaSQL = "SELECT * FROM usuarios " +
             "INNER JOIN personas ON(personas.idPersona = usuarios.idUsuario) " +
@@ -45,23 +36,23 @@ public class UsuarioDAO {
                     String nombrePais = resultado.getString(11);
                     int idPais = resultado.getInt("idPersona");                    
                     pais = new Pais(idPais, nombrePais);
-                    persona = new Persona(idPersona,cedula, nombrePerona, apellido, fechaNacimiento, pais);
-                    aux.add(new Usuario(persona,nPrestamos, null));
+                    persona = new Persona(idPersona, cedula, nombrePerona, apellido, fechaNacimiento, pais);
+                    usuarios.add(new Usuario(persona,nPrestamos, null));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return aux;
+        return usuarios;
     }
-    public ArrayList<Usuario> filtrarPorPais(){
-        ArrayList<Usuario> aux = new ArrayList<>();
+    public ArrayList<Usuario> filtrarPorPais() {
+        ArrayList<Usuario> usuariosFiltrados = new ArrayList<>();
         
-        return aux;
+        return usuariosFiltrados;
     }
-    public ArrayList<Usuario> getMasPretadores(int n){
-        ArrayList<Usuario> aux = new ArrayList<>();
+    public ArrayList<Usuario> getMasPretadores(int n) {
+        ArrayList<Usuario> usuariosFiltrados = new ArrayList<>();
         
-        return aux;
+        return usuariosFiltrados;
     }
 }

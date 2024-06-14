@@ -3,11 +3,12 @@ package modelos;
 import java.sql.Date;
 
 public class Prestamo {
-    public int idPrestamo;
-    public boolean vigente;
-    public Date fechaPrestamo;
-    public Usuario usuario;
-    public Libro libro;
+    private int idPrestamo;
+    private boolean vigente;
+    private Date fechaPrestamo;
+    private Usuario usuario;
+    private Libro libro;
+    
     public Prestamo(int idPrestamo, boolean vigente, Date fechaPrestamo, Usuario usuario, Libro libro) {
         this.idPrestamo = idPrestamo;
         this.vigente = vigente;

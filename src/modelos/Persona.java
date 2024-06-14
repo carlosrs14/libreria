@@ -3,12 +3,12 @@ package modelos;
 import java.sql.Date;
 
 public class Persona {
-    public int idPersona;
-    public int cedula;
-    public String nombre;
-    public String apellido;
-    public Date fechaNacimiento;
-    public Pais paisNacionalidad;
+    private int idPersona;
+    private int cedula;
+    private String nombre;
+    private String apellido;
+    private Date fechaNacimiento;
+    private Pais paisNacionalidad;
     public Persona(int idPersona, int cedula, String nombre, String apellido, Date fechaNacimiento,
             Pais paisNacionalidad) {
         this.idPersona = idPersona;

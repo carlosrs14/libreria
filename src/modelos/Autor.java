@@ -1,8 +1,8 @@
 package modelos;
 
 public class Autor {
-    public Persona personaAutor;
-    public Genero generoPrincipal;
+    private Persona personaAutor;
+    private Genero generoPrincipal;
     public Autor(Persona personaAutor, Genero generoPrincipal) {
         this.personaAutor = personaAutor;
         this.generoPrincipal = generoPrincipal;

@@ -11,7 +11,7 @@ import modelos.Persona;
 import modelos.Usuario;
 
 public class UsuarioDAO {
-    Connection connection;
+    private Connection connection;
     public UsuarioDAO(Connection connection) {
         this.connection = connection;
     }

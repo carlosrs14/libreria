@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import controladores.LibroDAO;
+import controladores.PersonaDAO;
 import datos.Credenciales;
 import modelos.Libro;
+import modelos.Persona;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -28,6 +30,7 @@ public class Main {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/libreria", credenciales.user, credenciales.password);
             if(connection != null){
                 LibroDAO libroDAO = new LibroDAO(connection);
+                PersonaDAO  personaDAO = new PersonaDAO(connection);
                 int op = 0;
                 System.out.println("Bienvenido a la libreria");
                 do { 
@@ -45,7 +48,10 @@ public class Main {
 
                         break; 
                         case 4:
-
+                            System.out.print("Ingrese el documento del usuario: ");
+                            String cedula = scanner.nextLine();
+                            Persona persona = personaDAO.getPersona(cedula);
+                            System.out.println(persona);
                         break; 
                         case 5:
                             System.out.print("Ingrese el nombre del libro: ");

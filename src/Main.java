@@ -4,11 +4,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import controladores.LibroDAO;
-import controladores.PersonaDAO;
+import controladores.*;
 import datos.Credenciales;
-import modelos.Libro;
-import modelos.Persona;
+import modelos.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -31,6 +29,7 @@ public class Main {
             if(connection != null){
                 LibroDAO libroDAO = new LibroDAO(connection);
                 PersonaDAO  personaDAO = new PersonaDAO(connection);
+                PrestamoDAO prestamoDAO = new PrestamoDAO(connection);
                 int op = 0;
                 System.out.println("Bienvenido a la libreria");
                 do { 
@@ -39,7 +38,11 @@ public class Main {
 
                     switch (op) {
                         case 1:
-                        
+                            System.out.println("Se muestran en pantalla todos los prestamos");
+                            ArrayList<Prestamo> prestamos = prestamoDAO.getPrestamos();
+                            for (Prestamo prestamo: prestamos) {
+                                System.out.println(prestamo);
+                            }
                         break;
                         case 2:
                         

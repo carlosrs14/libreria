@@ -184,6 +184,15 @@ END;
 $$
 LANGUAGE plpgsql;
 
+--5 view
+CREATE OR REPLACE VIEW todosLosPrestamos
+AS
+SELECT idprestamo, titulo, vigente, fechaprestamo, cedula, nombre, apellido
+FROM prestamos
+INNER JOIN usuarios u USING(idUsuario)
+INNER JOIN personas p ON(p.idPersona = u.idUsuario)
+INNER JOIN libros l USING(idLibro);
+
 --Paises
 INSERT INTO paises (nombre) VALUES
 ('Reino Unido'),  --1 William Shakespeare
